@@ -17,7 +17,7 @@ public class UserType implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "user_type_id")
-    private Integer id;
+    private Long id;
 
     private String name;
 
