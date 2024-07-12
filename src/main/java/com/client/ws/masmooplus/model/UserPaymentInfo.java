@@ -40,5 +40,7 @@ public class UserPaymentInfo implements Serializable {
     @Column(name = "dt_payment")
     private LocalDateTime dtPayment = LocalDateTime.now();
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private Users users;
 }
