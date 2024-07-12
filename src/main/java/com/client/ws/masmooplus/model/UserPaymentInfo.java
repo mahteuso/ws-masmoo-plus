@@ -2,6 +2,7 @@ package com.client.ws.masmooplus.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "user_payment_info")
 public class UserPaymentInfo implements Serializable {
 
@@ -40,7 +42,7 @@ public class UserPaymentInfo implements Serializable {
     @Column(name = "dt_payment")
     private LocalDateTime dtPayment = LocalDateTime.now();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users users;
 }

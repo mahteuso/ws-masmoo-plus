@@ -2,16 +2,18 @@ package com.client.ws.masmooplus.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 @Entity
-@Table(name = "subscriptions_type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Table(name = "subscriptions_type")
 public class SubscriptionsType implements Serializable {
 
     @Id

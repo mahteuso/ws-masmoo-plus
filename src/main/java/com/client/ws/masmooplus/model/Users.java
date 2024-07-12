@@ -2,6 +2,7 @@ package com.client.ws.masmooplus.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +10,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
+@Table(name = "users")
 public class Users implements Serializable {
 
     @Id
@@ -34,11 +36,11 @@ public class Users implements Serializable {
     @Column(name = "dt_expiration")
     private LocalDateTime dtExpiration;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_type_id")
     private UserType userType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscriptions_type_id")
     private SubscriptionsType subscriptionsType;
 
