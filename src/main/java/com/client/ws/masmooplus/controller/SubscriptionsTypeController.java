@@ -4,6 +4,7 @@ package com.client.ws.masmooplus.controller;
 import com.client.ws.masmooplus.dto.SubscriptionsTypeDto;
 import com.client.ws.masmooplus.model.SubscriptionsType;
 import com.client.ws.masmooplus.service.SubscriptionsTypeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class SubscriptionsTypeController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<SubscriptionsType> save(@RequestBody SubscriptionsTypeDto dto){
+    public ResponseEntity<SubscriptionsType> save(@Valid @RequestBody SubscriptionsTypeDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(subscriptionsTypeService.save(dto));
     }
 
