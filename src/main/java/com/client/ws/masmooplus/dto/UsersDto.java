@@ -5,6 +5,7 @@ import com.client.ws.masmooplus.model.SubscriptionsType;
 import com.client.ws.masmooplus.model.UserType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,24 +24,25 @@ public class UsersDto {
     private Long id;
 
     @NotBlank(message = " Não poder nmulo ou vazio")
-    @Size(min = 5, max = 20, message = " Deve ter tamanho entre 5 e 10 caracteres")
+    @Size(min = 5, message = " Deve ter tamanho mínimo de 5 caracteres")
     private String name;
 
-    @Email
+    @Email(message = " Inválido")
     private String email;
 
     @NotBlank(message = " Não poder nmulo ou vazio")
     @Size(min = 11, max = 11, message = " Deve ter 11 caracteres")
     private String phone;
 
-    @CPF
+    @CPF(message = "Inválido")
     private String cpf;
 
     private LocalDateTime dtSubscription = LocalDateTime.now();
 
     private LocalDateTime dtExpiration;
 
-    private UserType userType;
+    @NotNull
+    private Long userTypeId;
 
-    private SubscriptionsType subscriptionsType;
+    private Long subscriptionsTypeId;
 }
