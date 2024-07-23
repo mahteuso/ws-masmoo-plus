@@ -3,6 +3,7 @@ package com.client.ws.masmooplus.controller;
 import com.client.ws.masmooplus.dto.UserTypeDto;
 import com.client.ws.masmooplus.model.UserType;
 import com.client.ws.masmooplus.service.UserTypeService;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,12 +33,12 @@ public class UserTypeController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<UserType> save(@RequestBody UserTypeDto dto){
+    public ResponseEntity<UserType> save(@Valid @RequestBody UserTypeDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(userTypeService.save(dto));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserType> update(@RequestBody UserTypeDto dto, @PathVariable("id") Long id){
+    public ResponseEntity<UserType> update(@Valid @RequestBody UserTypeDto dto, @PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(userTypeService.update(dto, id));
     }
 

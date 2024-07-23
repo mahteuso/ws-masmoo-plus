@@ -37,7 +37,7 @@ public class SubscriptionsTypeController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<SubscriptionsType> update(@RequestBody SubscriptionsTypeDto dto, @PathVariable("id") Long id){
+    public ResponseEntity<SubscriptionsType> update(@Valid @RequestBody SubscriptionsTypeDto dto, @PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(subscriptionsTypeService.update(dto, id));
     }
 

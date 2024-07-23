@@ -1,5 +1,6 @@
 package com.client.ws.masmooplus.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 public class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "users_id")
     private Long id;
 
@@ -31,16 +32,16 @@ public class Users implements Serializable {
     private String cpf;
 
     @Column(name = "dt_subscription")
-    private LocalDateTime dtSubscription = LocalDateTime.now();
+    private LocalDateTime dtSubscription;
 
     @Column(name = "dt_expiration")
     private LocalDateTime dtExpiration;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     @JoinColumn(name = "user_type_id")
     private UserType userType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     @JoinColumn(name = "subscriptions_type_id")
     private SubscriptionsType subscriptionsType;
 

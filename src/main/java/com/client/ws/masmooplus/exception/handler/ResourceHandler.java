@@ -3,6 +3,7 @@ package com.client.ws.masmooplus.exception.handler;
 import com.client.ws.masmooplus.dto.error.ErrorResponseDto;
 import com.client.ws.masmooplus.exception.BadRequestException;
 import com.client.ws.masmooplus.exception.NotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,6 +31,15 @@ public class ResourceHandler {
     public ResponseEntity<ErrorResponseDto> badRequestException(BadRequestException b) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
                 .message(b.getMessage())
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .build());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponseDto> dataIntegrityViolationException(DataIntegrityViolationException d) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
+                .message(d.getMessage())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .build());
